@@ -1,6 +1,9 @@
 package sorts;
 
 
+import java.util.Arrays;
+
+
 /**
  * Created by andrew on 12/31/16.
  */
@@ -62,6 +65,7 @@ public class MergeSort
 
         int array[] = {5,4,3,2,1};
         sorter.sortInPlace( array, 0, array.length - 1 );
+        System.out.println( Arrays.toString( array ) );
         System.out.println( "DONE" );
     }
 }

@@ -1,11 +1,14 @@
 package google.code.universe;
 
 
-import scala.Int;
+import common.TestCaseSupport;
 
 import java.io.*;
 import java.net.URL;
 import java.util.*;
+
+import static common.TestCaseSupport.readFromFile;
+import static common.TestCaseSupport.readTestCases;
 
 
 public class SearchUniverses
@@ -57,34 +60,6 @@ public class SearchUniverses
         return input;
     }
 
-    private static FileInputStream readFromFile ( )
-    {
-        try
-        {
-            URL resource = SearchUniverses.class.getResource( "testcase.txt" );
-            File file = new File( resource.getFile( ) );
-            return new FileInputStream( file );
-        }
-        catch ( IOException e )
-        {
-            return null;
-        }
-    }
-
-
-    private static List< TestCase > readTestCases ( InputStream is )
-    {
-        Scanner scan = new Scanner( is );
-        int numCases = scan.nextInt( );
-        List< TestCase > testCases = new ArrayList<>( numCases );
-        while ( numCases-- > 0 )
-        {
-            testCases.add( TestCase.fromScanner( scan ) );
-        }
-
-        return testCases;
-    }
-
 
     private static void resetEngineSearches ( int[] allEngineSearches )
     {
@@ -132,19 +107,20 @@ public class SearchUniverses
                                              return count;
                                          },
                                          ( some, other ) -> some + other );
-
     }
 
     public static void main ( String[] args )
     {
-        FileInputStream fileInputStream = readFromFile( );
+        FileInputStream fileInputStream = readFromFile( "/google/code/universe/testcase.txt" );
 
-        List< TestCase > testCases = readTestCases( fileInputStream );
+        List< TestCase > testCases = readTestCases( fileInputStream, TestCase::fromScanner );
 
-        testCases.forEach( testCase -> {
-            int switches = solveTestCase( testCase );
-            System.out.println( "Case " + switches );
-        } );
+        testCases.forEach( testCase ->
+                           {
+                               int switches = solveTestCase( testCase );
+                               System.out.println( "Case " + switches );
+                           } );
+
         System.out.println( "DONE" );
     }
 }

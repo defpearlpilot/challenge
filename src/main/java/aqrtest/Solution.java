@@ -2,7 +2,6 @@ package aqrtest;
 
 
 import hard.matrixrotation.MatrixRotation;
-import scala.Char;
 
 import java.io.File;
 import java.io.FileInputStream;

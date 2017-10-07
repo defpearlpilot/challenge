@@ -81,7 +81,7 @@ public class Gaps
       }
     }
 
-    if (gaps[gapIndex] == 0)
+    if (gapIndex <= gaps.length - 1 && gaps[gapIndex] == 0)
     {
       gaps[gapIndex] = s;
     }
@@ -97,11 +97,11 @@ public class Gaps
 
   public static void main(String[] args)
   {
-    int[] initialSet1 = new int[]{4};
-    int[] initialSet2 = new int[]{1, 4, 5, 7, 8, 13, 15, 17, 19};
-    int[] initialSet3 = new int[]{1, 4, 5, 7, 8, 13, 15, 17, 18, 19};
+//    int[] initialSet = new int[]{4};
+    int[] initialSet = new int[]{1, 4, 5, 7, 8, 13, 15, 17, 19};
+//    int[] initialSet = new int[]{1, 4, 5, 7, 8, 13, 15, 17, 18, 19};
 
-    Gaps g = new Gaps(initialSet3);
+    Gaps g = new Gaps(initialSet);
     GapIterator gapIterator = g.gapIterator();
 
     while (gapIterator.hasNext())

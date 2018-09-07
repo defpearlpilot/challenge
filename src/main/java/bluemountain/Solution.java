@@ -205,7 +205,7 @@ public class Solution
                               {
                                   return Stream.concat( Stream.of( node.getLeft( ) ),
                                                         Stream.of( node.getRight( ) ) )
-                                               .filter( n -> n != null );
+                                               .filter( Objects::nonNull );
                               } )
                     .collect( Collectors.toList( ) );
     }

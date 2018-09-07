@@ -9,53 +9,61 @@ import java.util.Arrays;
  */
 public class MergeSort
 {
-    public void checkRemainder(int[] values, int start, int end, int other)
-    {
-
+    private static void printF() {
+        System.out.println( String.format( "%s", "hi" ) );
     }
 
+    private static void printArr(String name, int[] arr) {
+        System.out.print( name );
+        System.out.println( Arrays.toString( arr ) );
+    }
 
-    private void mergeInPlace(int[] values, int start, int pivot, int end)
+    void merge(int array[], int leftIndex, int middleIndex, int rightIndex)
     {
-        if (start >= end)
-        {
-            return;
-        }
+        int leftSize = middleIndex - leftIndex + 1;
+        int rightSize = rightIndex - middleIndex;
 
-        int leftIndex = start;
-        int leftEnd = pivot;
-        int rightIndex = pivot + 1;
+        int leftSub[] = new int [leftSize];
+        int rightSub[] = new int [rightSize];
 
-        while (leftIndex <= leftEnd && rightIndex <= end)
+        System.arraycopy( array, leftIndex, leftSub, 0, leftSize );
+        System.arraycopy( array, middleIndex+1, rightSub, 0, rightSize );
+
+        int leftSubIndex = 0, rightSubIndex = 0;
+
+        int arrayIndex = leftIndex;
+        while (leftSubIndex < leftSize && rightSubIndex < rightSize)
         {
-            if (values[leftIndex] < values[rightIndex])
+            if (leftSub[leftSubIndex] <= rightSub[rightSubIndex])
             {
-                ++leftIndex;
+                array[arrayIndex++] = leftSub[leftSubIndex++];
             }
             else
             {
-                int temp = values[ rightIndex ];
-                System.arraycopy( values, leftIndex, values, leftIndex + 1, rightIndex - leftIndex );
-                values[ leftIndex ] = temp;
-                ++leftIndex;
-                ++leftEnd;
-                ++rightIndex;
+                array[arrayIndex++] = rightSub[rightSubIndex++];
             }
+        }
+
+        while (leftSubIndex < leftSize)
+        {
+            array[arrayIndex++] = leftSub[leftSubIndex++];
+        }
+
+        while (rightSubIndex < rightSize)
+        {
+            array[arrayIndex++] = rightSub[rightSubIndex++];
         }
     }
 
-
-    public void sortInPlace(int[] values, int start, int end)
+    private void sort(int[] values, int start, int end)
     {
-        if (start >= end)
+        if (start < end)
         {
-            return;
+            int pivot = (start + end) / 2;
+            sort(values, start, pivot);
+            sort(values, pivot + 1, end);
+            merge(values, start, pivot, end);
         }
-
-        int pivot = (int) Math.floor((start + end) / 2);
-        sortInPlace(values, start, pivot);
-        sortInPlace(values, pivot + 1, end);
-        mergeInPlace(values, start, pivot, end);
     }
 
 
@@ -63,8 +71,8 @@ public class MergeSort
     {
         MergeSort sorter = new MergeSort();
 
-        int array[] = {5,4,3,2,1};
-        sorter.sortInPlace( array, 0, array.length - 1 );
+        int array[] = {38, 27, 43, 3, 9, 82, 10};
+        sorter.sort( array, 0, array.length - 1 );
         System.out.println( Arrays.toString( array ) );
         System.out.println( "DONE" );
     }

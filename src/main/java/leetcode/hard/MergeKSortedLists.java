@@ -26,7 +26,7 @@ public class MergeKSortedLists {
     }
 
     public static ListNode mergeKLists(ListNode[] lists) {
-        Map<Integer, List<ListNode>> merged = Arrays.stream(lists).reduce(new HashMap<>(), (acc, node) -> {
+        Map<Integer, List<ListNode>> merged = Arrays.stream(lists).reduce(new TreeMap<>(), (acc, node) -> {
             if (node != null) {
                 acc.computeIfAbsent(node.val, (i) -> new LinkedList<>()).add(node);
             }

@@ -60,7 +60,7 @@ class MatrixRotationTest
     }
 
 /*
-    @Test
+    @Pips
     void testCalculateXOffset()
     {
         assertEquals( 0, new MatrixRotation( ).calculateXOffset( 0,0, 5, 4, 1 ) );
@@ -76,7 +76,7 @@ class MatrixRotationTest
     }
 
 
-    @Test
+    @Pips
     void testCalculateYOffset()
     {
         assertEquals( 0, new MatrixRotation( ).calculateYOffset( 0, 5, 4, 1 ) );

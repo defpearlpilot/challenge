@@ -2,26 +2,31 @@ package dsa.structures;
 
 public class DLNode<T> {
     private T data;
-    private Node<T> next;
-    private Node<T> previous;
+    private DLNode<T> next;
+    private DLNode<T> previous;
 
     public DLNode(T data) {
         this.data = data;
     }
 
-    public void setNext(Node<T> next) {
+    public T getData() {
+        return this.data;
+
+    }
+
+    public void setNext(DLNode<T> next) {
         this.next = next;
     }
 
-    public Node<T> getNext() {
+    public DLNode<T> getNext() {
         return this.next;
     }
 
-    public void setPrevious(Node<T> previous) {
+    public void setPrevious(DLNode<T> previous) {
         this.previous = previous;
     }
 
-    public Node<T> getPrevious() {
+    public DLNode<T> getPrevious() {
         return this.previous;
     }
 }

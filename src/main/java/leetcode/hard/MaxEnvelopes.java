@@ -36,23 +36,6 @@ public class MaxEnvelopes
 
         int[] dp = new int[envelopes.length];
 
-//        int len = 0;
-//
-//        for (int[] envelope: envelopes) {
-//            int index = Arrays.binarySearch(dp, 0, len, envelope[WIDTH]);
-//            System.out.println("Index for " + envelope[WIDTH] + " is " + index);
-//
-//            if (index < 0) {
-//                index = -(index + 1);
-//            }
-//
-//            dp[index] = envelope[WIDTH];
-//            if (index == len) {
-//                len++;
-//            }
-//        }
-//      return len;
-
         Arrays.fill(dp, 1);
         int max = dp[0];
         for (int i = 1; i < envelopes.length; i++) {

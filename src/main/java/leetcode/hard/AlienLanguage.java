@@ -190,6 +190,15 @@ public class AlienLanguage {
 
     }
 
+    public static void testFive() {
+        /*
+        ["ab","adc"]
+
+        Output:
+        "abcd"
+         */
+    }
+
     public static void main(String[] args) {
         testOne();
         testTwo();

@@ -13,6 +13,8 @@ public class PartitionEqualSumSubset {
     The array size will not exceed 200.
      */
 
+
+
     public static boolean gatherTotal(int total, int[] nums) {
         for (int index = nums.length - 1; index > 0; index--) {
             int candidate = nums[index];
@@ -38,10 +40,6 @@ public class PartitionEqualSumSubset {
             return true;
         }
 
-        if (Arrays.binarySearch(nums, 0, end, total) >= 0) {
-            return true;
-        }
-
         for (int index = end; index > 0; index--) {
             int candidate = nums[index];
 
@@ -56,6 +54,23 @@ public class PartitionEqualSumSubset {
 
         return false;
     }
+
+    public static boolean gatherTotalBT(int total, int[] nums) {
+        for (int index = nums.length - 1; index > 0; index--) {
+            int candidate = nums[index];
+
+            if (candidate == total) {
+                return true;
+            }
+
+            if (gatherSub(total - candidate, index - 1, nums)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
 
     public static boolean canPartition(int[] nums) {
         if (nums.length <= 1) {
@@ -119,9 +134,9 @@ public class PartitionEqualSumSubset {
     }
 
     public static void main(String[] args) {
-//        testOne();
-//        testTwo();
-//        testThree();
+        testOne();
+        testTwo();
+        testThree();
         testFour();
     }
 }
